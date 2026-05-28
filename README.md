@@ -7,7 +7,11 @@ dashboard (SDTCC), o bot de alerta (RPA) e a seleção de alvo do braço-service
 
 **Integrantes:** Pedro Farath — RM98608 · Lucca Vilaça — RM551538 · João Victor — RM550453 · Juliana Maita — RM99224 · Luana Cabezaolias — RM99320
 
-**Aplicação no ar:** [PREENCHER: URL do Streamlit Community Cloud]
+**Aplicação no ar:** https://gs-giae-4esr.streamlit.app
+
+> **Como usar a demo:** o **tipo do objeto é o fator dominante** — `PAYLOAD` (manobrável) tende a `LOW`
+> em quase qualquer configuração; risco `MEDIUM`/`HIGH` aparece em `DEBRIS`/`ROCKET_BODY`. Use os botões
+> **"Exemplo de ALTO/BAIXO risco"** para ver os extremos. A predição é ao vivo (não precisa clicar nada).
 
 ---
 
