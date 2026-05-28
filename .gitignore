@@ -1,0 +1,17 @@
+# Ambiente Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pip-tmp/
+
+# macOS
+.DS_Store
+
+# Scratch / artefatos de execução
+*.log
+.ipynb_checkpoints/
+
+# NOTA: gaie_risk_model.joblib, gaie_meta.json e os CSVs SÃO versionados de propósito —
+# o Streamlit Community Cloud precisa deles no repo para o deploy funcionar.

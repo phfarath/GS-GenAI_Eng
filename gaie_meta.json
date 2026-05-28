@@ -1,0 +1,37 @@
+{
+  "features": [
+    "object_type",
+    "rcs_size",
+    "altitude_band",
+    "altitude_km",
+    "inclination_deg",
+    "eccentricity",
+    "bstar",
+    "rcs_value_m2",
+    "log_rcs",
+    "period_min",
+    "days_in_orbit"
+  ],
+  "cat_cols": [
+    "object_type",
+    "rcs_size",
+    "altitude_band"
+  ],
+  "num_cols": [
+    "altitude_km",
+    "inclination_deg",
+    "eccentricity",
+    "bstar",
+    "rcs_value_m2",
+    "log_rcs",
+    "period_min",
+    "days_in_orbit"
+  ],
+  "classes": [
+    "HIGH",
+    "LOW",
+    "MEDIUM"
+  ],
+  "best": "RandomForest",
+  "test_acc": 0.8727272727272727
+}
