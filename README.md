@@ -16,9 +16,34 @@ dashboard (SDTCC), o bot de alerta (RPA) e a seleção de alvo do braço-service
 ---
 
 ## 1. Definição do problema
-Dado um objeto orbital (satélite, corpo de foguete ou detrito) descrito por atributos orbitais e
-físicos, prever sua classe de risco de colisão. É um problema de **classificação multiclasse** (3 classes)
-diretamente conectado à Indústria Espacial: priorizar quais objetos monitorar e quais acionar resposta.
+
+**O contexto (mundo real).** A órbita da Terra está cada vez mais congestionada: há **mais de 6.000
+satélites ativos** e **mais de 100.000 objetos rastreados** — satélites mortos, estágios de foguete
+descartados (`ROCKET_BODY`) e fragmentos de colisões e explosões (`DEBRIS`). Tudo isso viaja a
+~28.000 km/h; nessa velocidade até um parafuso carrega energia de impacto comparável à de uma granada.
+
+**A ameaça (síndrome de Kessler).** Cada colisão gera centenas de novos fragmentos, que aumentam a
+probabilidade de novas colisões — uma reação em cadeia que pode tornar faixas orbitais inteiras
+inutilizáveis por décadas. Não é hipotético: a colisão **Iridium 33 × Cosmos 2251 (2009)** e o teste
+antissatélite **Fengyun-1C (2007)** geraram, sozinhos, milhares de detritos rastreados — objetos que,
+inclusive, aparecem com `risk_class = HIGH` neste dataset.
+
+**A dor operacional.** Operadores de satélites recebem **milhares de alertas de aproximação por
+semana**. Manobrar custa combustível e encurta a vida útil do satélite; ignorar um alerta pode
+destruí-lo. O gargalo é **priorização**: com recursos finitos (combustível, janelas de manobra,
+atenção humana), *quais* objetos merecem monitoramento intensivo e resposta?
+
+**O que este componente resolve.** Dado um objeto orbital descrito por atributos orbitais e físicos
+(altitude, período, tipo, tamanho RCS, arrasto), prever automaticamente sua **classe de risco de
+colisão** — `HIGH` / `MEDIUM` / `LOW` — e **explicar a decisão** (SHAP), para que um operador possa
+auditar *por que* um objeto foi marcado como alto risco antes de acionar uma resposta. Formalmente, é
+um problema de **classificação multiclasse** (3 classes). É o **cérebro de triagem** do sistema da
+Global Solution: transforma uma enxurrada de objetos numa fila priorizada e justificável.
+
+**Conexão com a Indústria Espacial e os ODS.** Alinha-se ao **ODS 9** (proteger a infraestrutura
+orbital — comunicação, GPS, observação da Terra) e ao **ODS 13** (o monitoramento climático por
+satélite depende de uma órbita segura e livre de colisões). Sem gestão de detritos, perdemos acesso ao
+espaço — e aos serviços que dele dependem na Terra.
 
 ## 2. Dataset
 `orbital_objects_seed.csv` — **1.100 objetos × 13 colunas** (satisfaz o mínimo de ≥1000×10 do edital),
@@ -97,7 +122,7 @@ No Colab: suba `orbital_objects_seed.csv` para `/content/` e `Runtime → Run al
 2. `share.streamlit.io` → login GitHub → New app → aponte para o repo, branch `main`, arquivo `app.py`.
 3. A URL pública resultante vai no topo deste README e na entrega.
 
-## 9. Limitações (declaradas)
+## 9. Limitações 
 Dataset **sintético** (rótulo por regra ruidosa): o trabalho prova a **metodologia** (pipeline,
 comparação de 3 modelos, validação, SHAP), não um classificador validado contra colisões reais.
 Trabalho futuro: TLEs do CelesTrak + eventos de conjunção do SOCRATES.
