@@ -81,9 +81,11 @@ Importância global medida (`mean|SHAP|`, média entre classes):
 
 | Feature | Importância |
 |---|---|
-| `object_type` | 28.8% |
-| **regime orbital** (`period_min` + `altitude_km`) | **41.3%** |
+| `object_type` | 29.5% |
+| **regime orbital** (`period_min` + `altitude_km`) | **41.4%** |
 | tamanho (`rcs_value_m2` + `log_rcs`) | ~13% |
+
+> Os percentuais acima são **impressos pela célula 10b do notebook** (`mean|SHAP|` normalizado) — reproduzíveis, não lidos do gráfico.
 
 Coerente com o `data_contract.md` e com a física: objetos não-manobráveis (detrito/foguete), em
 bandas orbitais congestionadas e de maior tamanho, concentram o risco `HIGH`. O `app.py` mostra o
@@ -92,7 +94,9 @@ bandas orbitais congestionadas e de maior tamanho, concentram o risco `HIGH`. O 
 ## 6. Coesão com a Global Solution
 Esquema idêntico ao `data_contract.md` (mesmos nomes de coluna, `object_id` como chave, categorias
 `HIGH/MEDIUM/LOW`). O notebook exporta **`risk_scores.csv`** (`object_id`, `risk_class`) — o handoff
-HARD consumido por BDDI/SDTCC. Diagrama-mestre do sistema (o mesmo dos PDFs de BDDI/SDTCC e do BPMN do RPA):
+HARD consumido por BDDI/SDTCC. Note que esses valores são as **predições do modelo** para todos os
+objetos (não o rótulo do seed): é exatamente o papel do GAIE em produção — *gerar* `risk_class`. Por
+isso a distribuição (LOW 604 / MEDIUM 345 / HIGH 151) difere ligeiramente do ground truth do seed. Diagrama-mestre do sistema (o mesmo dos PDFs de BDDI/SDTCC e do BPMN do RPA):
 
 ```mermaid
 flowchart LR
